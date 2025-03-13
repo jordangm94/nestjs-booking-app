@@ -1,0 +1,14 @@
+services:
+  postgresql:
+    image: postgres:latest
+    container_name: postgres_nestjs
+    restart: always
+    env_file:
+      - .env
+    ports:
+      - '5438:5432'
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:

@@ -54,4 +54,17 @@ export class AppointmentsService {
 
     return appointment;
   }
+
+  async getBookedAppointments() {
+    const bookedAppointments = await this.db.appointment.findMany({
+      where: {
+        status: 'CONFIRMED',
+      },
+      select: {
+        appointmentDateTime: true,
+      },
+    });
+
+    return bookedAppointments;
+  }
 }

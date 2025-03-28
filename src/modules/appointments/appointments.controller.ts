@@ -1,4 +1,4 @@
-import { Controller, Post, Body, HttpCode } from '@nestjs/common';
+import { Controller, Post, Body, HttpCode, Get } from '@nestjs/common';
 import { AppointmentsService } from './appointments.service';
 import { CreateAppointmentDto } from './dto/create-appointment.dto';
 
@@ -10,5 +10,11 @@ export class AppointmentsController {
   @Post()
   create(@Body() createAppointmentDto: CreateAppointmentDto) {
     return this.appointmentsService.create(createAppointmentDto);
+  }
+
+  @HttpCode(200)
+  @Get()
+  getBookedAppointments() {
+    return this.appointmentsService.getBookedAppointments();
   }
 }
